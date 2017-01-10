@@ -1,7 +1,8 @@
 <ion-view view-title="{{titleName}}" hide-back-button="true" hide-nav-bar="true">
     <ion-content ng-class="{expanded:$scope.isExpanded}">
-        <div class="row no-padding">
-            <div class=" col no-padding" ng-show="estimatedEffort"> 
+        <h2>Efforts Chart</h2>
+        <div id='effortsChartDivId' class="row no-padding">
+            <!-- <div class=" col no-padding" ng-show="estimatedEffort"> 
 	            <div class="item item-divider" > Estimated Effort Hours: </div>
 	            	<div id="estimatedEffort" class="card figure animate-fade-slide-in-right button-energized-900 flip" >
 			   		{{estimatedEffort[0].value}}
@@ -18,36 +19,48 @@
             	<div id="spentEffort"class="card figure animate-fade-slide-in-right  button-balanced-900 flip">
 			   		{{spentEffort[0].value}}
 				</div>
-            </div>
+            </div> -->
 		</div>
-		<div class="card animate-fade-slide-in-right" ng-show="burndownData">
+        <div class='effortsChartLegends'>
+            <div class="estmtLegend"></div><label class="estmtLbl">Estimated Effort Hours</label>&nbsp;<div class="spntLegend"></div><label class="spntLbl">Spent Effort Hours</label>
+        </div>
+        <br/><hr><br/>
+        <h2>Burndown Chart</h2>
+		<div class="card animate-fade-slide-in-right" style="clear:both" ng-show="burndownData">
             <div class="item item-divider">Burndown Chart (Hours) </div>
             <div class="item item-text-wrap"> <canvas id="burndownCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Spent Effort Date Histogram</h2>
         <div class="card animate-fade-slide-in-right" ng-show="spentEffortData">
             <div class="item item-divider">Spent Effort Date Histogram (Hours)</div>
             <div class="item item-text-wrap" id="spentEffortHistogram"> <canvas id="spentEffortHistogramCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Productivity Date Histogram</h2>
         <div class="card animate-fade-slide-in-right" ng-show="productivityResp">
             <div class="item item-divider">Productivity Date Histogram</div>
             <div class="item item-text-wrap"> <canvas id="productivityHistogramCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Quality Date Histogram</h2>
         <div class="card animate-fade-slide-in-right" ng-show="qualityHistogramResp">
             <div class="item item-divider">Quality Date Histogram</div>
             <div class="item item-text-wrap"> <canvas id="qualityHistogramCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Team Histogram</h2>
         <div class="card animate-fade-slide-in-right" ng-show="teamResp">
             <div class="item item-divider">Team Histogram</div>
             <div class="item item-text-wrap"> <canvas id="teamCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Productivity Chart</h2>
         <div class="card animate-fade-slide-in-right" ng-show="projectProductivityStatResp">
             <div class="item item-divider">Project - wise Productivity Chart</div>
             <div class="item item-text-wrap"> <canvas id="projectProductivityStatCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Quality Chart</h2>
         <div class="card animate-fade-slide-in-right" ng-show="projectQualityStatResp">
             <div class="item item-divider">Project - wise Quality Chart</div>
             <div class="item item-text-wrap"> <canvas id="projectQualityStatCanvas"></canvas> </div>
-        </div>
+        </div><br/><hr><br/>
+        <h2>Spent Efforts Chart</h2>
         <div class="card animate-fade-slide-in-right" ng-show="projectSpentEffortsStatResp">
             <div class="item item-divider">Project - wise Spent effort Chart (Hours)</div>
             <div class="item item-text-wrap"> <canvas id="projectSpentEffortsStatCanvas"></canvas> </div>

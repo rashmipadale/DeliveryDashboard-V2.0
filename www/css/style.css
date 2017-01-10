@@ -123,7 +123,33 @@ legend{
     margin: 0 auto;
     font-size: 20px;
 }
-
+.effortsChartLegends{
+    margin: auto;
+    text-align: center;
+    width: 26%;
+}
+.estmtLegend{
+    width: 10px;
+    height: 10px;
+    background-color: #00AAED;
+    border: 0px;
+    float: left;
+    margin-top: 4px;
+    margin-right: 10px;
+}
+.spntLegend{
+    width: 10px;
+    height: 10px;
+    background-color: #65C32F;
+    border: 0px;
+    float: left;
+    margin-top: 4px;
+    margin-right: 10px;
+    margin-left: 20px;
+}
+.estmtLbl, .spntLbl{
+    float:left;
+}
 @media (min-width:1025px) { 
 	.scroll{
 		padding-left: 10% !important;

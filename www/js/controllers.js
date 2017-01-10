@@ -316,6 +316,31 @@ angular.module('dashboard').controller('AppCtrl', function($scope, $rootScope, $
     $scope.closeRefineModal = function() {
         $scope.refineModal.hide();
     }
+    //$scope.drawEffortsChart($scope.estimatedEffort, $scope.spentEffort);
+    $scope.drawEffortsChart = function(estimatedEffort, spentEffort){
+        //d3.select('svg').remove();
+        var estimatedVal = estimatedEffort[0].value;
+        var spentVal = spentEffort[0].value;
+        
+        var estimated = estimatedVal;
+        var spent = spentVal;
+        
+        var spentPercentage = (spent/estimated)*100;
+        
+        var effortsData = function () {
+            var ran = Math.random();
+
+            return    [
+                {index: 0, name: 'estimated', icon: "\uF105", percentage: 0, newPercentage: 98},
+                {index: 1, name: 'spent', icon: "\uF101", percentage: 0, newPercentage: spentPercentage}
+            ];
+
+        };
+        spentLabel = spent +" hrs";
+        estimLabel = estimated + " hrs";
+        var parentElement = document.getElementById("effortsChartDivId");
+        build(effortsData, parentElement); 
+    };
     $scope.destroyGraphs = function (){
     	if($scope.myBarChart0 != undefined || $scope.myBarChart0 != null){
             $scope.myBarChart0.destroy();
@@ -363,6 +388,14 @@ angular.module('dashboard').controller('AppCtrl', function($scope, $rootScope, $
     	graphService.getCircleDataEstimatedEffort($rootScope.getToken(), $scope.refineData, $scope.userData, $scope.params).then(function(estimatedEffort) {
             $scope.estimatedEffort = estimatedEffort;
             $scope.color1 = $rootScope.getcolor(2);
+            graphService.getCircleDataSpentEffort($rootScope.getToken(), $scope.refineData, $scope.userData , $scope.params).then(function(spentEffort) {
+                $scope.spentEffort = spentEffort;
+                $scope.color3 = $rootScope.getcolor(2);
+                $scope.drawEffortsChart($scope.estimatedEffort, $scope.spentEffort);
+            }, function(err) {
+                $scope.errorObj = err.data.message;
+                console.log("Failed!, something went wrong. " + err.data.message);
+            });
         }, function(err) {
             $scope.errorObj = err.data.message;
             console.log("Failed!, something went wrong. " + err.data.message);
@@ -374,13 +407,7 @@ angular.module('dashboard').controller('AppCtrl', function($scope, $rootScope, $
             $scope.errorObj = err.data.message;
             console.log("Failed!, something went wrong. " + err.data.message);
         });
-        graphService.getCircleDataSpentEffort($rootScope.getToken(), $scope.refineData, $scope.userData , $scope.params).then(function(spentEffort) {
-            $scope.spentEffort = spentEffort;
-            $scope.color3 = $rootScope.getcolor(2);
-        }, function(err) {
-            $scope.errorObj = err.data.message;
-            console.log("Failed!, something went wrong. " + err.data.message);
-        });
+        
         graphService.getSpentEffortHistogram($rootScope.getToken(), $scope.refineData, $scope.userData, $scope.params).then(function(SpentEffortResp) {
             $scope.spentEffortData = $rootScope.getBarGraphData(SpentEffortResp, true, 'bar');
             var bar = document.getElementById("spentEffortHistogramCanvas").getContext("2d");

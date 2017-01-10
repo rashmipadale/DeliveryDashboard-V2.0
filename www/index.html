@@ -11,9 +11,11 @@
     <link rel="stylesheet" href="css/angular-chart.css">
     <link href="css/style.css" rel="stylesheet">
     <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
     <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
     <script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
     <script src="lib/Chart.min.js"></script>
+    <script src="lib/polarChart.js"></script>
     <script src="lib/angular-chart.min.js"></script>
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
@@ -23,8 +25,48 @@
     <script src="js/router.js"></script>
     <script src="js/services.js"></script>
     <script src="js/constants.js"></script>
+    <style type="text/css">
+        .icon{
+          font-family:fontawesome;
+          font-weight:bold;
+          font-size:30px;
+
+        }
+        .goal,.completed{
+          font-family: 'Roboto','Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+          fill:#000000;
+          text-anchor:middle;
+        }
+        .spent{
+            fill:#65C32F;
+            font-family: 'Roboto','Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+            font-size: 16px;
+            text-anchor:middle;
+        }
+        .estimate{
+            fill: #00AAED;
+            font-family: 'Roboto','Myriad Set Pro', 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
+            font-size: 16px;
+            text-anchor:middle;
+        }
+        .goal{
+          font-size: 16px;
+
+
+        }
+        .completed{
+          font-size: 95px;
+        }
+    </style>
 </head>
 <body ng-app="dashboard">
+    <head>
+        <meta charset="utf-8">
+        <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    </head>
+    <script src="https://cdn.rawgit.com/bm-w/d3/master/d3.js"></script>
+    <script src="effortsChart.js"></script>
     <ion-nav-view></ion-nav-view>
 </body>
 </html>
